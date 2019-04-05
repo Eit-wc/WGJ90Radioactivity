@@ -7,6 +7,7 @@ public class enimy2 : enimy1
     // Start is called before the first frame update
     public GameObject bullet;
     public Transform firePoint;
+    
     protected void Start()
     {
         base.Start();
