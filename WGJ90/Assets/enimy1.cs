@@ -10,22 +10,24 @@ public class enimy1 : MonoBehaviour
     public float HP = 4.0f;
 
     public GameObject bloodEffect;
-    private Animator ac;
-    private SpriteRenderer sr;
+    protected Animator ac;
+    protected SpriteRenderer sr;
 
     public float DMG = 1.0f;
-    private bool StartMove = false;
-    void Start()
+    protected bool StartMove = false;
+    private AudioSource audios;
+    protected void Start()
     {
+        audios = GetComponent<AudioSource>();
         cc = GetComponent<CharacterController>();
         ac = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
-        this.transform.localScale =  new Vector3(-1.0f,1.0f,1.0f);
+       // this.transform.localScale =  new Vector3(-1.0f,1.0f,1.0f);
         ac.SetFloat("HP",this.HP);
     }
 
     // Update is called once per frame
-    bool frontRight = true;
+    
     void FixedUpdate() {
         if(StartMove)
         {
@@ -38,6 +40,7 @@ public class enimy1 : MonoBehaviour
             }
             ac.SetFloat("HP",this.HP);
         }
+        
     }
 
     public void takeDmg(float dmg)
@@ -53,6 +56,10 @@ public class enimy1 : MonoBehaviour
             StartCoroutine("blink");
 
         }
+        
+        audios.time = 0.4f;
+        audios.pitch = Random.Range(.6f,.9f);
+        audios.Play();
     }
 
     IEnumerator blink() 
@@ -71,7 +78,7 @@ public class enimy1 : MonoBehaviour
         
         if(hit.gameObject.layer == LayerMask.NameToLayer("Level"))
         {
-            Debug.Log(this.transform.localScale.x > 0.9f);
+            //Debug.Log(this.transform.localScale.x > 0.9f);
             sr.flipX = !sr.flipX;
         }else if(hit.gameObject.layer == LayerMask.NameToLayer("Player"))
         {

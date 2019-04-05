@@ -18,8 +18,8 @@ TagManager:
   - Player
   - Level
   - Enemy
-  - 
-  - 
+  - bulletEnemy
+  - WinPoint
   - 
   - 
   - 

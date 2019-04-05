@@ -19,7 +19,7 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision other) {
 
-        Debug.Log(other.gameObject.name);
+        //Debug.Log(other.gameObject.name);
         if(other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             other.gameObject.GetComponent<enimy1>().takeDmg(1.0f);
